@@ -18,3 +18,12 @@ class UpdateTask extends TodoEvent{
   // TODO: implement props
   List<Object?> get props => [todoModel];
 }
+
+
+class RemoveTask extends TodoEvent{
+  final TodoModel todoModel;
+  RemoveTask({required this.todoModel});
+  @override
+  // TODO: implement props
+  List<Object?> get props => [todoModel];
+}

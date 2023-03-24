@@ -13,6 +13,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   TodoBloc() : super(TodoState()) {
     on<AddTask>(_onAddTask);
     on<UpdateTask>(_onUpdateTask);
+    on<RemoveTask>(_onRemoveTask);
   }
 
   void _onAddTask(AddTask event, Emitter<TodoState> emit){
@@ -24,8 +25,17 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
 
   void _onUpdateTask(UpdateTask event, Emitter<TodoState> emit){
     final state = this.state;
+
     emit(
-        TodoState(todoModel: List.from(state.todoModel)..add(event.todoModel))
+        TodoState(todoModel: List.from(state.todoModel)..remove(event.todoModel))
+    );
+  }
+
+  void _onRemoveTask(RemoveTask event, Emitter<TodoState> emit){
+    final state = this.state;
+
+    emit(
+        TodoState(todoModel: List.from(state.todoModel)..remove(event.todoModel))
     );
   }
 
